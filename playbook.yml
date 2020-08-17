@@ -1,4 +1,5 @@
 ---
-- become: yes
+- host: localhost
+  become: yes
   roles:
     - role: k3s
