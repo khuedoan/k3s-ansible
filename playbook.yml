@@ -1,5 +1,4 @@
 ---
-- hosts: all
-  become: yes
+- become: yes
   roles:
     - role: k3s
