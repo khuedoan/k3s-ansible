@@ -3,6 +3,16 @@
   selinux:
     state: disabled
 
+- name: Set inbound rules
+  firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    state: disabled
+  with_items:
+    - 6443/tcp
+    - 8472/udp
+    - 10250/tcp
+
 - name: Download k3s binary
   get_url:
     url: "https://github.com/rancher/k3s/releases/download/{{ k3s_version }}/k3s"
