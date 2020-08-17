@@ -3,12 +3,12 @@
   selinux:
     state: disabled
 
-- name: Set inbound rules
+- name: Set firewall rules
   firewalld:
     port: "{{ item }}"
     permanent: yes
     immediate: yes
-    state: disabled
+    state: enabled
   with_items:
     - 6443/tcp
     - 8472/udp
