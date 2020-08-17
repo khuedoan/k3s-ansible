@@ -1,5 +1,5 @@
 ---
-- host: localhost
+- hosts: localhost
   become: yes
   roles:
     - role: k3s
