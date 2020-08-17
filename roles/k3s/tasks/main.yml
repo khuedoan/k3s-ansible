@@ -7,6 +7,7 @@
   firewalld:
     port: "{{ item }}"
     permanent: yes
+    immediate: yes
     state: disabled
   with_items:
     - 6443/tcp
