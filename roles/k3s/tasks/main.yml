@@ -34,6 +34,6 @@
 - name: Enable k3s service
   systemd:
     name: k3s
-    state: started
+    state: restarted
     enabled: yes
     daemon_reload: yes
