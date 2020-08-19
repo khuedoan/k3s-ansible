@@ -16,5 +16,5 @@
 ## Usage
 
 ```sh
-ansible-pull --ask-become-pass -U https://github.com/khuedoan/k3s-ansible playbook.yml
+ansible-playbook -k -K playbook.yml -i hosts.ini
 ```
