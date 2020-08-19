@@ -37,3 +37,9 @@
     state: restarted
     enabled: yes
     daemon_reload: yes
+
+- name: Get kubectl config file
+  fetch:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: k3s.yaml
+    flat: yes
