@@ -3,6 +3,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Supported distro](#supported-distro)
+* [Prerequisites](#prerequisites)
 * [Usage](#usage)
 
 <!-- vim-markdown-toc -->
@@ -12,6 +13,13 @@
 - [x] CentOS
 - [ ] Debian
 - [ ] Ubuntu
+
+## Prerequisites
+
+```sh
+pipenv shell
+pipenv install -r requirements.txt
+```
 
 ## Usage
 
