@@ -41,13 +41,13 @@
 - name: Get kubectl config file
   fetch:
     src: /etc/rancher/k3s/k3s.yaml
-    dest: k3s.yaml
+    dest: "{{ kubeconfig }}"
     flat: yes
 
 - name: Change server in config file
   become: no
   local_action:
     module: replace
-    path: k3s.yaml
+    path: "{{ kubeconfig }}"
     regexp: '127.0.0.1'
     replace: "{{ ansible_play_hosts[0] }}"
