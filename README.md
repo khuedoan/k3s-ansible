@@ -5,6 +5,7 @@
 * [Supported distro](#supported-distro)
 * [Prerequisites](#prerequisites)
 * [Usage](#usage)
+* [Acknowledgement](#acknowledgement)
 
 <!-- vim-markdown-toc -->
 
@@ -26,3 +27,7 @@ pipenv install -r requirements.txt
 ```sh
 ansible-playbook -k -K playbook.yml -i hosts.ini
 ```
+
+## Acknowledgement
+
+- https://github.com/rancher/k3s-ansible/
