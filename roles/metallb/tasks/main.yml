@@ -1,0 +1,10 @@
+---
+- name: Create MetalLB namespace
+  k8s:
+    src: "https://raw.githubusercontent.com/metallb/metallb/{{ metallb_version }}/manifests/namespace.yaml"
+    state: present
+
+- name: Install MetalLB
+  k8s:
+    src: "https://raw.githubusercontent.com/metallb/metallb/{{ metallb_version }}/manifests/metallb.yaml"
+    state: present

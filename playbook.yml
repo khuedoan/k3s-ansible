@@ -3,3 +3,4 @@
   become: yes
   roles:
     - role: k3s
+    - role: metallb
