@@ -47,7 +47,7 @@
 - name: Change server in config file
   become: no
   local_action:
-    module: lineinfile
+    module: replace
     path: k3s.yaml
-    regexp: 'server: '
-    line: "server: https://{{ ansible_play_hosts[0] }}:6443"
+    regexp: '127.0.0.1'
+    replace: "{{ ansible_play_hosts[0] }}"
