@@ -8,6 +8,10 @@
     - namespace.yaml
     - metallb.yaml
 
+- name: Generate secret key
+  command: openssl rand -base64 128
+  register: secretkey
+
 - name: Create secret for MetalLB
   k8s:
     kubeconfig: "{{ kubeconfig }}"
@@ -18,7 +22,7 @@
         namespace: metallb-system
         name: memberlist
       data:
-        secretkey: "{{ metallb_secretkey | b64encode }}"
+        secretkey: "{{ secretkey.stdout }}"
     state: present
 
 - name: Config MetalLB
