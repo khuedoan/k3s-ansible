@@ -1,2 +1,4 @@
+kubeconfig: k3s.yaml
 metallb_version: v0.9.3
+metallb_secretkey: "{{ hostvars[ansible_play_hosts[0]].ansible_machine_id | to_uuid }}"
 addresses: 192.168.1.60-192.168.1.90
