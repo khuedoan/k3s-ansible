@@ -43,3 +43,11 @@
     src: /etc/rancher/k3s/k3s.yaml
     dest: k3s.yaml
     flat: yes
+
+- name: Change server in config file
+  become: no
+  local_action:
+    module: lineinfile
+    path: k3s.yaml
+    regexp: 'server: '
+    line: "server: https://{{ ansible_play_hosts[0] }}:6443"
