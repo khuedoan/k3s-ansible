@@ -1,15 +1,12 @@
 ---
-- name: Create MetalLB namespace
+- name: Install MetalLB manifests
   k8s:
     kubeconfig: "{{ kubeconfig }}"
-    src: "https://raw.githubusercontent.com/metallb/metallb/{{ metallb_version }}/manifests/namespace.yaml"
+    definition: "{{ lookup('url', 'https://raw.githubusercontent.com/metallb/metallb/{{ metallb_version }}/manifests/{{ item }}', split_lines=False) | from_yaml_all | list }}"
     state: present
-
-- name: Install MetalLB
-  k8s:
-    kubeconfig: "{{ kubeconfig }}"
-    src: "https://raw.githubusercontent.com/metallb/metallb/{{ metallb_version }}/manifests/metallb.yaml"
-    state: present
+  with_items:
+    - namespace.yaml
+    - metallb.yaml
 
 - name: Create secret for MetalLB
   k8s:
@@ -22,8 +19,7 @@
         name: memberlist
       data:
         secretkey: "{{ metallb_secretkey | b64encode }}"
-    state:
-      present
+    state: present
 
 - name: Config MetalLB
   k8s:
