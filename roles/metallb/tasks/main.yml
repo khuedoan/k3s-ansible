@@ -7,23 +7,27 @@
   with_items:
     - namespace.yaml
     - metallb.yaml
+  register: metallb
 
-- name: Generate secret key
-  command: openssl rand -base64 128
-  register: secretkey
+- name: MetalLB secret
+  block:
+    - name: Generate secret key
+      command: openssl rand -base64 128
+      register: secretkey
 
-- name: Create secret for MetalLB
-  k8s:
-    kubeconfig: "{{ kubeconfig }}"
-    definition:
-      apiVersion: v1
-      kind: Secret
-      metadata:
-        namespace: metallb-system
-        name: memberlist
-      data:
-        secretkey: "{{ secretkey.stdout }}"
-    state: present
+    - name: Create secret for MetalLB
+      k8s:
+        kubeconfig: "{{ kubeconfig }}"
+        definition:
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            namespace: metallb-system
+            name: memberlist
+          data:
+            secretkey: "{{ secretkey.stdout }}"
+        state: present
+  when: metallb.changed
 
 - name: Config MetalLB
   k8s:
